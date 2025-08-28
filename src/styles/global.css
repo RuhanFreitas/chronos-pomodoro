@@ -16,3 +16,14 @@ body {
     background-color: var(--gray-900);
     color: var(--text-default);
 }
+
+.container {
+    max-width: 98rem;
+    background-color: blue;
+    margin: 0 auto;
+}
+
+.content {
+    background-color: red;
+    margin: 3.2rem;
+}

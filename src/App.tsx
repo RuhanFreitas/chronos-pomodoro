@@ -1,23 +1,39 @@
-import { TimerIcon } from 'lucide-react'
-import { Heading } from './components/Heading'
+import './styles/theme.css'
 import './styles/global.css'
 
 export const App = () => {
     return (
-        <div>
-            <Heading>
-                Hello, World!
-                <button>
-                    <TimerIcon />
-                </button>
-            </Heading>
-
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. In
-                harum dolores ipsum culpa totam ex ducimus perspiciatis, beatae
-                esse iste explicabo ratione tempora quaerat odio earum
-                inventore. Quos, reiciendis minus!
-            </p>
-        </div>
+        <>
+            <div className="container">
+                <div className="content">
+                    <section>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Corporis minima quisquam aperiam harum autem modi
+                        quibusdam laudantium aut quam, doloribus ea odio facere
+                        atque eligendi quaerat non ratione? Itaque, modi!
+                    </section>
+                </div>
+            </div>
+            <div className="container">
+                <div className="content">
+                    <section>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Corporis minima quisquam aperiam harum autem modi
+                        quibusdam laudantium aut quam, doloribus ea odio facere
+                        atque eligendi quaerat non ratione? Itaque, modi!
+                    </section>
+                </div>
+            </div>
+            <div className="container">
+                <div className="content">
+                    <section>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Corporis minima quisquam aperiam harum autem modi
+                        quibusdam laudantium aut quam, doloribus ea odio facere
+                        atque eligendi quaerat non ratione? Itaque, modi!
+                    </section>
+                </div>
+            </div>
+        </>
     )
 }
