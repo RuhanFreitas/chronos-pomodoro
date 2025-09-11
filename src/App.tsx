@@ -17,15 +17,12 @@ export const App = () => {
             <Container>
                 <Logo />
             </Container>
-
             <Container>
                 <Menu />
             </Container>
-
             <Container>
                 <CountDown />
             </Container>
-
             <Container>
                 <form className="form" action="">
                     <div className="formRow">
@@ -50,7 +47,6 @@ export const App = () => {
                     </div>
                 </form>
             </Container>
-
             <Container>
                 <Footer />
             </Container>
