@@ -1,11 +1,26 @@
-import { HistoryIcon, HouseIcon, SettingsIcon, SunIcon } from 'lucide-react'
+import {
+    HistoryIcon,
+    HouseIcon,
+    MoonIcon,
+    SettingsIcon,
+    SunIcon,
+} from 'lucide-react'
 import styles from './styles.module.css'
 import { useState, useEffect } from 'react'
 
 type AvailableThemes = 'dark' | 'light'
 
 export const Menu = () => {
-    const [theme, setTheme] = useState<AvailableThemes>('dark')
+    const [theme, setTheme] = useState<AvailableThemes>(() => {
+        const storageTheme =
+            (localStorage.getItem('theme') as AvailableThemes) || 'dark'
+        return storageTheme
+    })
+
+    const nextThemeIcon = {
+        dark: <SunIcon />,
+        light: <MoonIcon />,
+    }
 
     const handleToggleTheme = (
         e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
@@ -16,6 +31,7 @@ export const Menu = () => {
 
     useEffect(() => {
         document.documentElement.setAttribute('data-theme', theme)
+        localStorage.setItem('theme', theme)
     }, [theme])
 
     return (
@@ -51,7 +67,7 @@ export const Menu = () => {
                 title="Toggle Theme"
                 onClick={handleToggleTheme}
             >
-                <SunIcon />
+                {nextThemeIcon[theme]}
             </a>
         </div>
     )
