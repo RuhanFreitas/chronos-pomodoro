@@ -1,4 +1,4 @@
-import { PlayCircleIcon } from 'lucide-react'
+import { PlayCircleIcon, StopCircleIcon } from 'lucide-react'
 import { Cycles } from '../Cycles'
 import { DefaultButton } from '../DefaultButton'
 import { DefaultInput } from '../DefaultInput'
@@ -61,6 +61,7 @@ export const MainForm = () => {
                     type="text"
                     placeholder="type something..."
                     ref={taskNameInput}
+                    disabled={!!state.activeTask}
                 />
             </div>
 
@@ -68,12 +69,30 @@ export const MainForm = () => {
                 <p>Lorem ipsum dolor sit amet.</p>
             </div>
 
-            <div className="formRow">
-                <Cycles />
-            </div>
+            {state.currentCycle > 0 && (
+                <div className="formRow">
+                    <Cycles />
+                </div>
+            )}
 
             <div className="formRow">
-                <DefaultButton color="red" icon={<PlayCircleIcon />} />
+                {!state.activeTask ? (
+                    <DefaultButton
+                        aria-label="Start task"
+                        title="Start task"
+                        color="red"
+                        type="submit"
+                        icon={<PlayCircleIcon />}
+                    />
+                ) : (
+                    <DefaultButton
+                        aria-label="Stop task"
+                        title="Stop task"
+                        type="button"
+                        color="gray"
+                        icon={<StopCircleIcon />}
+                    />
+                )}
             </div>
         </form>
     )
