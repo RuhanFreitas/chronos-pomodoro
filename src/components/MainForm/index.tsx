@@ -52,6 +52,30 @@ export const MainForm = () => {
         })
     }
 
+    const handleInterruptTask = () => {
+        setState((prevState) => {
+            return {
+                ...prevState,
+                activeTask: null,
+                secondsRemaining: 0,
+                formattedSecondsRemaining: '00:00',
+                tasks: prevState.tasks.map((task) => {
+                    if (
+                        prevState.activeTask &&
+                        prevState.activeTask.id === task.id
+                    ) {
+                        return {
+                            ...task,
+                            interruptedDate: Date.now(),
+                        }
+                    }
+
+                    return task
+                }),
+            }
+        })
+    }
+
     return (
         <form onSubmit={handleCreateNewTask} className="form" action="">
             <div className="formRow">
@@ -83,6 +107,7 @@ export const MainForm = () => {
                         color="red"
                         type="submit"
                         icon={<PlayCircleIcon />}
+                        key="star-task-button"
                     />
                 ) : (
                     <DefaultButton
@@ -91,6 +116,8 @@ export const MainForm = () => {
                         type="button"
                         color="gray"
                         icon={<StopCircleIcon />}
+                        onClick={handleInterruptTask}
+                        key="stop-task-button"
                     />
                 )}
             </div>
