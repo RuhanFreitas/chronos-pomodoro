@@ -9,6 +9,7 @@ import { getNextCycle } from '../../utils/getNextCycle'
 import { getNextCycleType } from '../../utils/getNextCycleType'
 import { TaskActionTypes } from '../../contexts/TaskContext/taskAction'
 import { Tips } from '../Tips'
+import { TimerWorkerManager } from '../../workers/TimerWorkerManager'
 
 export const MainForm = () => {
     const { state, dispatch } = useTaskContext()
@@ -39,6 +40,13 @@ export const MainForm = () => {
         }
 
         dispatch({ type: TaskActionTypes.START_TASK, payload: newTask })
+
+        const worker = TimerWorkerManager.getInstance()
+
+        worker.onmessage((event) => {
+            console.log('Message received from worker:', event.data)
+            worker.terminate()
+        })
     }
 
     const handleInterruptTask = () => {
