@@ -7,7 +7,7 @@ import {
 } from 'lucide-react'
 import styles from './styles.module.css'
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router'
+import { RouterLink } from '../RouterLink'
 
 type AvailableThemes = 'dark' | 'light'
 
@@ -37,30 +37,30 @@ export const Menu = () => {
 
     return (
         <div className={styles.menu}>
-            <Link
+            <RouterLink
                 className={styles.menuLink}
-                to="/"
+                href="/"
                 aria-label="Go to Home"
                 title="Go to Home"
             >
                 <HouseIcon />
-            </Link>
-            <Link
+            </RouterLink>
+            <RouterLink
                 className={styles.menuLink}
-                to="#"
+                href="/history"
                 aria-label="Go to History"
                 title="Go to History"
             >
                 <HistoryIcon />
-            </Link>
-            <a
+            </RouterLink>
+            <RouterLink
                 className={styles.menuLink}
-                href="#"
+                href="/settings"
                 aria-label="Go to Settings"
                 title="Go to Settings"
             >
                 <SettingsIcon />
-            </a>
+            </RouterLink>
             <a
                 className={styles.menuLink}
                 href="#"

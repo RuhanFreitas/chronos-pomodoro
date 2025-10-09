@@ -1,6 +1,7 @@
 import { Container } from '../../components/Container'
 import { GenericHtml } from '../../components/GenericHmtl'
 import { Heading } from '../../components/Heading'
+import { RouterLink } from '../../components/RouterLink'
 import { MainTemplate } from '../../templates/MainTemplate'
 
 export const AboutPomodoro = () => {
@@ -58,8 +59,10 @@ export const AboutPomodoro = () => {
                     <p>
                         You can set your own focus, short break, and long break
                         times! Just go to the
-                        <a href="/settings">settings page</a> and adjust the
-                        minutes as you prefer.
+                        <RouterLink href="/settings">
+                            settings page
+                        </RouterLink>{' '}
+                        and adjust the minutes as you prefer.
                     </p>
 
                     <h3>🔁 Cycles organized in sequence</h3>
