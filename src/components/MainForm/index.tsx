@@ -9,7 +9,7 @@ import { getNextCycle } from '../../utils/getNextCycle'
 import { getNextCycleType } from '../../utils/getNextCycleType'
 import { TaskActionTypes } from '../../contexts/TaskContext/taskAction'
 import { Tips } from '../Tips'
-import { TimerWorkerManager } from '../../workers/TimerWorkerManager'
+import { showMessage } from '../../adapters/showMessage'
 
 export const MainForm = () => {
     const { state, dispatch } = useTaskContext()
@@ -20,13 +20,14 @@ export const MainForm = () => {
 
     const handleCreateNewTask = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
+        showMessage.dismiss()
 
         if (taskNameInput.current === null) return
 
         const taskName = taskNameInput.current.value.trim()
 
         if (!taskName) {
-            alert('Please enter a task name.')
+            showMessage.warn('Please enter a task name.')
         }
 
         const newTask: TaskModel = {
@@ -41,15 +42,13 @@ export const MainForm = () => {
 
         dispatch({ type: TaskActionTypes.START_TASK, payload: newTask })
 
-        const worker = TimerWorkerManager.getInstance()
-
-        worker.onmessage((event) => {
-            console.log('Message received from worker:', event.data)
-            worker.terminate()
-        })
+        showMessage.success('Task initiated!')
     }
 
     const handleInterruptTask = () => {
+        showMessage.dismiss()
+        showMessage.info('Task interrupted.')
+
         dispatch({
             type: TaskActionTypes.INTERRUPT_TASK,
         })
