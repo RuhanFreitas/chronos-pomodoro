@@ -48,7 +48,9 @@ export const History = () => {
         showMessage.confirm(
             'Are you sure you want to delete the history? This action cannot be undone.',
             (confirmation) => {
-                setConfirmClearHistory(confirmation)
+                if (confirmation) {
+                    dispatch({ type: TaskActionTypes.RESET_STATE })
+                }
             }
         )
     }
@@ -66,9 +68,13 @@ export const History = () => {
         if (!confirmClearHistory) return
 
         setConfirmClearHistory(false)
-
-        dispatch({ type: TaskActionTypes.RESET_STATE })
     }, [confirmClearHistory, dispatch])
+
+    useEffect(() => {
+        return () => {
+            showMessage.dismiss()
+        }
+    })
 
     return (
         <MainTemplate>
