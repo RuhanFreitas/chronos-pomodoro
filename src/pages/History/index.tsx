@@ -12,9 +12,11 @@ import { sortTasks } from '../../utils/sortTasks'
 import type { SortTasksOptions } from '../../utils/sortTasks'
 import { useEffect, useState } from 'react'
 import { TaskActionTypes } from '../../contexts/TaskContext/taskAction'
+import { showMessage } from '../../adapters/showMessage'
 
 export const History = () => {
     const { state, dispatch } = useTaskContext()
+    const [confirmClearHistory, setConfirmClearHistory] = useState(false)
     const hasTasks = state.tasks.length > 0
     const [sortTasksOptions, setSortTasksOptions] = useState<SortTasksOptions>(
         () => {
@@ -25,15 +27,6 @@ export const History = () => {
             }
         }
     )
-
-    useEffect(() => {
-        setSortTasksOptions((prevState) => ({
-            ...prevState,
-            tasks: state.tasks,
-            direction: prevState.direction,
-            field: prevState.field,
-        }))
-    })
 
     const handleSortTasks = ({ field }: Pick<SortTasksOptions, 'field'>) => {
         const newDirection =
@@ -51,15 +44,31 @@ export const History = () => {
     }
 
     const handleResetHistory = () => {
-        if (
-            !confirm(
-                'Are you sure you want to delete the history? This action cannot be undone.'
-            )
+        showMessage.dismiss()
+        showMessage.confirm(
+            'Are you sure you want to delete the history? This action cannot be undone.',
+            (confirmation) => {
+                setConfirmClearHistory(confirmation)
+            }
         )
-            return
+    }
+
+    useEffect(() => {
+        setSortTasksOptions((prevState) => ({
+            ...prevState,
+            tasks: state.tasks,
+            direction: prevState.direction,
+            field: prevState.field,
+        }))
+    })
+
+    useEffect(() => {
+        if (!confirmClearHistory) return
+
+        setConfirmClearHistory(false)
 
         dispatch({ type: TaskActionTypes.RESET_STATE })
-    }
+    }, [confirmClearHistory, dispatch])
 
     return (
         <MainTemplate>
