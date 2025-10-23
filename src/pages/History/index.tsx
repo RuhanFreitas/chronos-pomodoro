@@ -18,6 +18,7 @@ export const History = () => {
     const { state, dispatch } = useTaskContext()
     const [confirmClearHistory, setConfirmClearHistory] = useState(false)
     const hasTasks = state.tasks.length > 0
+
     const [sortTasksOptions, setSortTasksOptions] = useState<SortTasksOptions>(
         () => {
             return {
@@ -27,6 +28,35 @@ export const History = () => {
             }
         }
     )
+
+    useEffect(() => {
+        document.title = 'History - Chronos Pomodoro'
+    })
+
+    useEffect(() => {
+        setSortTasksOptions((prevState) => ({
+            ...prevState,
+            tasks: sortTasks({
+                tasks: state.tasks,
+                direction: prevState.direction,
+                field: prevState.field,
+            }),
+        }))
+    }, [state.tasks])
+
+    useEffect(() => {
+        if (!confirmClearHistory) return
+
+        setConfirmClearHistory(false)
+
+        dispatch({ type: TaskActionTypes.RESET_STATE })
+    }, [confirmClearHistory, dispatch])
+
+    useEffect(() => {
+        return () => {
+            showMessage.dismiss()
+        }
+    }, [])
 
     const handleSortTasks = ({ field }: Pick<SortTasksOptions, 'field'>) => {
         const newDirection =
@@ -54,27 +84,6 @@ export const History = () => {
             }
         )
     }
-
-    useEffect(() => {
-        setSortTasksOptions((prevState) => ({
-            ...prevState,
-            tasks: state.tasks,
-            direction: prevState.direction,
-            field: prevState.field,
-        }))
-    })
-
-    useEffect(() => {
-        if (!confirmClearHistory) return
-
-        setConfirmClearHistory(false)
-    }, [confirmClearHistory, dispatch])
-
-    useEffect(() => {
-        return () => {
-            showMessage.dismiss()
-        }
-    })
 
     return (
         <MainTemplate>
