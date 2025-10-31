@@ -4,12 +4,17 @@ import { Heading } from '../../components/Heading'
 import { MainTemplate } from '../../templates/MainTemplate'
 import { DefaultButton } from '../../components/DefaultButton'
 import { SaveIcon } from 'lucide-react'
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { useTaskContext } from '../../contexts/TaskContext/useTaskContext'
 import { showMessage } from '../../adapters/showMessage'
+import { TaskActionTypes } from '../../contexts/TaskContext/taskAction'
 
 export const Settings = () => {
-    const { state } = useTaskContext()
+    useEffect(() => {
+        document.title = 'Settings | Chronos Pomodoro'
+    })
+
+    const { state, dispatch } = useTaskContext()
 
     const workTimeInputRef = useRef<HTMLInputElement>(null)
     const shortBreakInputRef = useRef<HTMLInputElement>(null)
@@ -42,6 +47,17 @@ export const Settings = () => {
             showMessage.error('Work time must be between 1 and 30 minutes.')
             return
         }
+
+        dispatch({
+            type: TaskActionTypes.CHANGE_SETTINGS,
+            payload: {
+                workTime,
+                shortBreak,
+                longBreak,
+            },
+        })
+
+        showMessage.success('Settings updated successfully!')
     }
 
     return (

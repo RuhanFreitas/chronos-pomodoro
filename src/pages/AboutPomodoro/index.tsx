@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { Container } from '../../components/Container'
 import { GenericHtml } from '../../components/GenericHmtl'
 import { Heading } from '../../components/Heading'
@@ -5,6 +6,10 @@ import { RouterLink } from '../../components/RouterLink'
 import { MainTemplate } from '../../templates/MainTemplate'
 
 export const AboutPomodoro = () => {
+    useEffect(() => {
+        document.title = 'About Pomodoro | Chronos Pomodoro'
+    })
+
     return (
         <MainTemplate>
             <Container>
