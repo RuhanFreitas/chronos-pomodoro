@@ -22,9 +22,9 @@ It was designed to be simple, responsive, and efficient, without unnecessary dis
 
 ### Tech Stack
 
-🔵 React.js  ;
-🟦 TypeScript  ;
-🟡 ViteJS  ;
+🔵 React.js;  
+🟦 TypeScript;  
+🟡 ViteJS;
 
 <hr />
 
