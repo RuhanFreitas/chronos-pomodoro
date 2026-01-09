@@ -22,9 +22,9 @@ It was designed to be simple, responsive, and efficient, without unnecessary dis
 
 ### Tech Stack
 
-TypeScript;  
-React.js;  
-Vite;  
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" width="32" />
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" width="32" />
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vitejs/vitejs-original.svg" width="32" /> 
 Web Workers;  
 LocalStorage for persistence;  
 <hr />
