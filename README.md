@@ -2,11 +2,13 @@
 
 Chronos Pomodoro is a minimal Pomodoro timer focused on productivity and time awareness.
 It helps users manage their focus sessions with a clean interface and flexible time settings.
+<hr />
 
 ### Overview
 
 The project follows the Pomodoro Technique while allowing users to customize work and break durations according to their personal workflow.
 It was designed to be simple, responsive, and efficient, without unnecessary distractions.
+<hr />
 
 ### Features
 
@@ -16,6 +18,7 @@ It was designed to be simple, responsive, and efficient, without unnecessary dis
 📱 Responsive web interface;  
 💾 Data persistence using localStorage;  
 👷 Background timer handling with Web Workers;  
+<hr />
 
 ### Tech Stack
 
@@ -24,6 +27,7 @@ React.js;
 Vite;  
 Web Workers;  
 LocalStorage for persistence;  
+<hr />
 
 ### Project Status
 
