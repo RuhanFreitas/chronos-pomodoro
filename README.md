@@ -11,18 +11,27 @@ It was designed to be simple, responsive, and efficient, without unnecessary dis
 ### Features
 
 Classic Pomodoro timer
+
 Customizable work and break sessions
+
 Light and Dark mode
+
 Responsive web interface
+
 Data persistence using localStorage
+
 Background timer handling with Web Workers
 
 ### Tech Stack
 
 TypeScript
+
 React.js
+
 Vite
+
 Web Workers
+
 LocalStorage for persistence
 
 ### Project Status
